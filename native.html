@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- <input type="text"> -->
+        <component-a @click="isNotNative"></component-a>
+        <br>
+        <component-a @click.native="isNative"></component-a>
+    </div>
+</body>
+<script>
+    // 组件components
+    const componentA = {
+        template: `
+            <div style='height:200px;width:200px;background-color:red;'>
+                <input type='text' />
+            </div>
+        `,
+        data() {
+            return {}
+        },
+        mounted() {},
+        methods: {},
+    }
+
+
+
+    var vm = new Vue({
+        el: "#app",
+        data() {
+            return {}
+        },
+        components: {
+            componentA: componentA,
+        },
+        mounted() {},
+        methods: {
+            isNotNative() {
+                console.log('isNotNative');
+            },
+            isNative() {
+                console.log('isNative');
+            },
+        },
+    })
+</script>
+
+</html>

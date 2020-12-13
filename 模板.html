@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- <input type="text"> -->
+        <component-a></component-a>
+    </div>
+</body>
+<script>
+    // 组件components
+    const componentA = {
+        template: `
+            <div>
+                <input type='text' />
+            </div>
+        `,
+        data() {
+            return {}
+        },
+        mounted() {},
+        methods: {},
+    }
+
+
+
+    var vm = new Vue({
+        el: "#app",
+        data() {
+            return {}
+        },
+        components: {
+            componentA: componentA,
+        },
+        mounted() {},
+        methods: {},
+    })
+</script>
+
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<div id="app">
+    <div>双向绑定</div>
+    <p>{{a}}</p>
+    <input v-model="a" type="text">
+    <component-a v-model="a" @input></component-a>
+    <div>传对象</div>
+    父：<input v-model="b.n" type="text"><br>
+    <component-a v-model="a" v-bind:b="b" @input></component-a>
+</div>
+
+<body>
+
+</body>
+<script>
+    //components
+    const componentA = {
+        props: [
+            'value', 'b'
+        ],
+        data() {
+            return {
+                bb: {
+                    n: '',
+                    m: '',
+                },
+            }
+        },
+        template: `<div>
+                    子：<input v-model='bb.n' type='text'/>
+                    <input :value="value" @change="change" type='text'/>
+                  </div>
+        `,
+        mounted() {
+            this.bb = this.b;
+        },
+        methods: {
+            change(e) {
+                this.$emit('input', e.target.value)
+
+            },
+        }
+
+    }
+
+    var vm = new Vue({
+        el: '#app',
+        data() {
+            return {
+                a: 'father',
+                b: {
+                    n: 1,
+                    m: 2
+                }
+            }
+        },
+        components: {
+            componentA: componentA
+        },
+        mounted() {},
+        methods: {},
+    })
+</script>
+
+</html>
