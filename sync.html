@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <input v-model='message.a' type="text">
+        <input v-model='message.b' type="text">
+        <component-a v-bind.sync="message"></component-a>
+    </div>
+</body>
+<script>
+    // 组件components
+    const componentA = {
+        template: `
+            <div>
+                <input @input="inputA" :value='a' type='text' />
+                <input @input="inputB" :value='b' type='text' />
+            </div>
+        `,
+        props: ['a', 'b'],
+        data() {
+            return {}
+        },
+        mounted() {},
+        methods: {
+            inputA(e) {
+                this.$emit("update:a", e.target.value)
+            },
+            inputB(e) {
+                this.$emit("update:b", e.target.value)
+            },
+        },
+    }
+
+
+
+    var vm = new Vue({
+        el: "#app",
+        data() {
+            return {
+                message: {
+                    a: '1',
+                    b: '2'
+                }
+            }
+        },
+        components: {
+            componentA: componentA,
+        },
+        mounted() {},
+        methods: {},
+    })
+</script>
+
+</html>
