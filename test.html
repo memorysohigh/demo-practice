@@ -1,0 +1,52 @@
+<template>
+    <div class="test-wrap">
+        <input type="text" v-model="kk" class="input-a" />
+        <test-component :kk="kk" @input="input" id="input-b"></test-component>
+    </div>
+</template>
+<script>
+    let me;
+    export default {
+        el: "#input-b",
+        name: "Test",
+        data() {
+            return {
+                initAreaInfo: [],
+                kk: "father",
+            };
+        },
+        components: {
+            testComponent: {
+                template: `<input v-model="val">`,
+                data() {
+                    return {
+                        val: this.kk,
+                    };
+                },
+                props: ["kk"],
+                watch: {
+                    kk(newValue) {
+                        this.val = newValue;
+                    },
+                    val(newValue) {
+                        this.$emit("input", newValue);
+                    },
+                },
+            },
+        },
+        mounted() {
+            me = this;
+            console.log(me.$el);
+        },
+        methods: {
+            input(el) {
+                console.log(me.kk);
+                me.kk = el;
+                console.log(me.kk);
+            },
+        },
+    };
+</script>
+
+<style lang="scss" scoped>
+</style>

@@ -1,23 +1,22 @@
-var promise = new Promise(function(resolve,reject){
-    if(1){
-        //同步任务从上到下按顺序执行，
-        //异步任务从上到下按顺序执行，
-        console.log('1');
-        resolve('value');
-        console.log('2');
-    }
-    else{
-        reject('erro');
-    }
-    console.log('3');
+var promise = new Promise(function (resolve, reject) {
+  if (1) {
+    //同步任务从上到下按顺序执行，
+    //异步任务从上到下按顺序执行，
+    console.log('1');
+    resolve('value');
+    console.log('2');
+  } else {
+    reject('erro');
+  }
+  console.log('3');
 })
 
 var timeOut = setTimeout(() => {
-    console.log(5);
+  console.log(5);
 }, 1);
 //Promise比settimeOut先执行
-promise.then((res)=>{
-    console.log(6,res);
+promise.then((res) => {
+  console.log(6, res);
 })
 
 console.log(4);
@@ -28,9 +27,9 @@ console.log(4);
 // })
 
 
-const getJSON = function(url) {
-  const promise = new Promise(function(resolve, reject){
-    const handler = function() {
+const getJSON = function (url) {
+  const promise = new Promise(function (resolve, reject) {
+    const handler = function () {
       if (this.readyState !== 4) {
         return;
       }
@@ -52,8 +51,16 @@ const getJSON = function(url) {
   return promise;
 };
 
-getJSON("/posts.json").then(function(json) {
+getJSON("/posts.json").then(function (json) {
   console.log('Contents: ' + json);
-}, function(error) {
+}, function (error) {
   console.error('出错了', error);
+});
+
+getJSON("/post/1.json").then(function (post) {
+  return getJSON(post.commentURL);
+}).then(function (comments) {
+  console.log("resolved: ", comments);
+}, function (err) {
+  console.log("rejected: ", err);
 });

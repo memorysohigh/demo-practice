@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+</head>
+
+<body>
+    <div class="test-wrap" id="app">
+        <input type="text" v-model="kk" />
+        <test-component v-model='kk' @input="input"></test-component>
+    </div>
+</body>
+<script>
+    var vm = new Vue({
+        // el: '#app',
+        name: "Test",
+        data() {
+            return {
+                initAreaInfo: [],
+                kk: "father",
+            };
+        },
+        components: {
+            testComponent: {
+                template: `<input v-model='value' @input="out">`,
+                data() {
+                    return {};
+                },
+                props: ["value"],
+                // watch: {
+                //     kk(newValue) {
+                //         this.val = newValue;
+                //     },
+                //     val(newValue) {
+                //         this.$emit("input", newValue);
+                //     },
+                // },
+                methods: {
+                    out(e) {
+                        this.$emit('input', e.target.value)
+                    }
+                }
+            },
+        },
+        mounted() {
+            me = this;
+        },
+        methods: {
+            input(el) {
+                console.log(me.kk);
+                me.kk = el;
+                console.log(me.kk);
+            },
+        },
+    })
+    vm.$mount('#app')
+</script>
+
+</html>
