@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- <input type="text"> -->
+        <component-a>
+            <template v-slot:asd='a'>
+                <h1>
+                    {{a.slotProp.lastName}}
+                </h1>
+            </template>
+            <template v-slot:forfathervalue='getChildVal'>
+                <!-- <template v-slot:forfathervalue（这是曹名）='getChildVal'（子组件的传过来的值都放在这里）> -->
+                <p>{{getChildVal}}</p>
+                <h3>
+                    {{getChildVal.forFather[1]}}
+                </h3>
+                <h6>{{getChildVal.othervalue}}</h6>
+            </template>
+        </component-a>
+    </div>
+</body>
+<script>
+    // 组件components
+    const componentA = {
+        template: `
+            <div>
+                <input type='text' />
+                <slot name='asd'  :slotProp='user'>
+                {{user.firstName}}
+                </slot>
+                <slot name='forfathervalue' :othervalue='bb' :forFather='ll'>
+
+                {{ll[0]}}
+                </slot>
+            </div>
+        `,
+        data() {
+            return {
+                user: {
+                    firstName: 'first AAasdasd',
+                    lastName: 'last AAasdvvv'
+                },
+                ll: ['传给父组件的值111', '传给父组件的值222'],
+                bb: '另一个值'
+            }
+        },
+        mounted() {},
+        methods: {},
+    }
+
+
+
+    var vm = new Vue({
+        el: "#app",
+        data() {
+            return {
+                a: {
+                    kk: '3213221'
+                }
+            }
+        },
+        components: {
+            componentA: componentA,
+        },
+        mounted() {},
+        methods: {},
+    })
+</script>
+
+</html>
