@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div>a:{{aaaaa}} b:{{bbbbb}}</div>
+        <component-a :a.sync='aaaaa' :b.sync='bbbbb'></component-a>
+    </div>
+</body>
+<script>
+    // 组件components
+    const componentA = {
+        template: `
+            <div>
+                <input type='text' :value='a' @input='returnInputValue' /></br>
+                爱好：</br>
+                <p @click='returnInputValue123'>{{b}}</p>
+                <input type='checkbox' value='唱歌' />唱歌
+                <input type='checkbox' value='跳舞' />跳舞
+                </div>
+        `,
+
+        props: {
+            a: {
+                type: String,
+                deflaut: '默认asd'
+            },
+            b: {
+                type: String,
+                deflaut: '默认asd'
+            }
+        },
+        data() {
+            return {}
+        },
+        mounted() {},
+        methods: {
+            returnInputValue(e) {
+                this.$emit('update:a', e.target.value)
+            },
+            returnInputValue123(e) {
+
+                this.$emit('update:b', 'e.target.value')
+
+            },
+        },
+    }
+
+    var vm = new Vue({
+        el: "#app",
+        data() {
+            return {
+                aaaaa: '1',
+                bbbbb: '2'
+            }
+        },
+        components: {
+            componentA: componentA,
+        },
+        mounted() {},
+        methods: {},
+    })
+</script>
+
+</html>
