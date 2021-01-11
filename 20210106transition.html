@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <transition name="fade" mode="out-in" appear>
+            <component is="vieww"></component>
+        </transition>
+    </div>
+</body>
+<script>
+    var vm = new Vue({
+        el: "#app",
+        data() {
+            return {
+                ok: true
+            }
+        },
+        components: {
+            vieww: ('vieww', {
+                render: function (createElement) {
+                    return createElement(
+                        'div', {},
+                        '这是组件'
+                    )
+                }
+            }),
+        },
+        mounted() {},
+        methods: {},
+    })
+</script>
+
+</html>

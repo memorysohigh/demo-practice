@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- <input type="text"> -->
+        <recursion :count='count+5'></recursion>
+    </div>
+</body>
+<script>
+    // 组件components
+    const componentA = {
+        name: 'recursion', //直接在template的模板里使用自己的name进行引用
+        template: `
+            <div>
+                <input type='text' />
+                <recursion v-if='counts' :count='counts-1'></recursion>
+            </div>
+        `,
+        props: ['count'],
+        data() {
+            return {}
+        },
+        computed: {
+            counts: function () {
+                return this.count
+            }
+        },
+        mounted() {},
+        methods: {},
+    }
+
+
+
+    var vm = new Vue({
+        el: "#app",
+        data() {
+            return {
+                count: 55,
+            }
+        },
+        components: {
+            recursion: componentA,
+        },
+        mounted() {},
+        methods: {},
+    })
+</script>
+
+</html>

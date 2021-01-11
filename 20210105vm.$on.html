@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+<div id="app">
+    <section>
+        <h1>left</h1>
+        <button type="primary" @click="isClick">点击</button>
+    </section>
+</div>
+
+<body>
+
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data() {
+                return {}
+            },
+            methods: {
+                isClick() {
+                    this.$emit('isLeft', '点击事件！');
+                }
+            },
+            mounted() {
+                this.$on('isLeft', (val) => {
+                    console.log(val);
+                });
+                this.$off('isLeft', (val) => {
+                    console.log('fsdfsdfsdf');
+                });
+            }
+        })
+    </script>
+</body>
+
+</html>
