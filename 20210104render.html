@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <anchored-heading :level="1">
+            Hello world!
+            <template v-slot:asd>
+                <h5>asd插槽</h5>
+            </template>
+        </anchored-heading>
+    </div>
+</body>
+<script>
+    var vm = new Vue({
+        el: "#app",
+        data() {
+            return {
+                level: 1,
+            }
+        },
+        components: {
+            anchoredHeading: ('anchoredHeading', {
+                render: function (createElement) {
+                    return createElement(
+                        'div', {}, // 标签名称
+                        [
+                            this.$slots.default, //这里的this.slots代表组件里有插槽，把父组件里值传进来有地方放。是具名插槽
+                            this.$slots.asd,
+                            createElement(
+                                'h' + this.level, {
+                                    attrs: {
+                                        id: 'mama'
+                                    },
+
+                                },
+                                '我是creatElement'),
+                            createElement(
+                                'testComp', {
+                                    props: {
+                                        myProp: '231312'
+                                    },
+                                },
+                            )
+                        ],
+                        // 子节点数组
+                    )
+                },
+
+
+
+                components: {
+                    testComp: ('test', {
+                        props: ['myProp'],
+                        render: function (createElement) {
+                            return createElement(
+                                'div',
+                                [this.myProp + 'asdasdas']
+                            )
+                        },
+                        mounted() {
+                            console.log(this.myProp + 'asdasdas');
+
+                        },
+                    }),
+
+                },
+
+
+
+
+                data() {
+                    return {
+                        value: 123456
+                    }
+                },
+                props: {
+                    level: {
+                        type: Number,
+                        required: true
+                    }
+                },
+                mounted() {
+                    console.log(this.$slots.default);
+
+                },
+                methods: {
+                    function1() {
+                        console.log(654);
+
+                    },
+                }
+            })
+        },
+        mounted() {
+            console.log(this.$slots.default);
+
+        },
+        methods: {
+
+        },
+    })
+</script>
+
+</html>

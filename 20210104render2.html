@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+    </div>
+</body>
+<script>
+    var comp1 = {
+        data() {
+            return {}
+        },
+        props: ['myProp'],
+        //     template: `
+        // <div>{{myProp+'asdasd'}}</div>
+        // `,
+        render: function (creatElement, context) {
+            return creatElement(
+                'div', {
+                    ref: 'pa'
+                },
+                this.myProp)
+        },
+        mounted() {
+            console.log(this.myProp, 4546);
+
+        }
+    }
+
+    var vm = new Vue({
+
+        el: "#app",
+        render(creatElement) {
+            return creatElement(
+                'comp1', {
+                    props: {
+                        myProp: this.value
+                    },
+                    nativeOn: {
+                        click: this.function1
+                    }
+                },
+            )
+        },
+        data() {
+            return {
+                value: 123
+            }
+        },
+
+
+        components: {
+            comp1: comp1
+        },
+
+
+
+        mounted() {},
+        methods: {
+            function1(e) {
+                console.log(e);
+
+            },
+        },
+    })
+</script>
+
+</html>
