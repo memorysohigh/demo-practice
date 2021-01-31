@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <style>
+        p:before {
+            content: ':before';
+            background-color: lawngreen;
+            height: 50px;
+        }
+
+        #kk>h1 {
+            color: red;
+        }
+
+        #kk div ul li:nth-of-type(even) {
+            color: lightsalmon;
+        }
+
+        /* #app h1:nth-last-of-type(2) {
+            background-color: magenta;
+        } */
+
+        #app :empty {
+            background-color: midnightblue;
+        }
+
+        :target {
+            display: block !important;
+            background-color: olive;
+        }
+
+        #app a:link {
+            color: orangered;
+        }
+
+        a:hover {
+            background-color: plum;
+        }
+
+        a:visited {
+            color: red;
+        }
+
+        a:active {
+            text-decoration: line-through;
+
+        }
+
+        #app #asd {
+            height: 0px;
+            width: 0px;
+            border: 100px solid transparent;
+            border-top: 0px solid transparent;
+            border-bottom: 100px solid greenyellow;
+
+        }
+    </style>
+    <div id="app">
+        <div id="asd"></div>
+        <a href="#target">to target</a>
+        <a href="#target2">to target</a>
+        <a href="#target3">to target</a>
+        <p>123456
+        </p>
+        <p></p>
+        <h1>111111</h1>
+        <div id="kk">
+            <div>
+                <h1>h2h2h2h2h2</h1>
+                <ul>
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                    <li>5</li>
+                </ul>
+            </div>
+            <h1>h3h3h3h3h3</h1>
+        </div>
+        <h1>111111</h1>
+        <h1>22222</h1>
+        <h1>33333</h1>
+        <h1>44444</h1>
+        <h1>55555</h1>
+        <h1>66666</h1>
+        <h1>77777</h1>
+        <h1>88888</h1>
+        <h1>9999999</h1>
+        <h1>10101010</h1>
+        <p>123456
+        </p>
+        <p></p>
+        <h1>111111</h1>
+        <div id="kk">
+            <div>
+                <h1>h2h2h2h2h2</h1>
+                <ul>
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                    <li>5</li>
+                </ul>
+            </div>
+            <h1>h3h3h3h3h3</h1>
+        </div>
+        <h1>111111</h1>
+        <h1>22222</h1>
+        <h1>33333</h1>
+        <h1>44444</h1>
+        <h1>55555</h1>
+        <h1>66666</h1>
+        <h1>77777</h1>
+        <h1>88888</h1>
+        <h1>9999999</h1>
+        <h1>10101010</h1>
+        <p>123456
+        </p>
+        <p></p>
+
+        <h1 id="target" style="display: none;">target</h1>
+        <h1 id="target2" style="display: none;">target2</h1>
+        <h1 id="target3" style="display: none;">target3</h1>
+
+    </div>
+</body>
+
+</html>
