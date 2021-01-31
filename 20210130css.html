@@ -9,6 +9,11 @@
 
 <body>
     <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
         p:before {
             content: ':before';
             background-color: lawngreen;
@@ -57,12 +62,57 @@
             height: 0px;
             width: 0px;
             border: 100px solid transparent;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
             border-top: 0px solid transparent;
             border-bottom: 100px solid greenyellow;
 
         }
+
+        #app .a {
+            height: 100px;
+            width: 100px;
+            border-radius: 50%;
+            /* background-image: repeating-linear-gradient(to left top, red, green); */
+            /* background-image: linear-gradient(to left top, red 50%, transparent 50%);线性渐变 */
+            background: radial-gradient(50px 50px at center, blue, red, green);
+            /* 径向渐变 */
+        }
+
+        #app .floatbox::after {
+            content: "";
+            clear: both;
+            display: block;
+            height: 0px;
+        }
+
+        #app .floatbox div {
+            float: left;
+            height: 50px;
+        }
+
+        #app .floatbox div:nth-child(odd) {
+            background-color: chartreuse;
+        }
+
+        #app #sspan:hover span strong a {
+            color: cyan;
+            position: absolute;
+            top: 50px;
+            /* float: left; 浮动和定位不能同时使用*/
+        }
     </style>
     <div id="app">
+        <span id="sspan">span <span>span2<strong>asdasd <a href="#">aaaaa</a></strong></span></span>
+        <!-- 行内元素只有左右margin没有上下 -->
+        <div class="floatbox" style="background-color: cyan;margin-top: 50px;">
+            <div class="b1">class="b1"</div>
+            <div class="b2">class="b2"</div>
+            <div class="b3">class="b3"</div>
+            <div class="b4">class="b4"</div>
+            <div class="b5">class="b5"</div>
+        </div>
+        <div class="a"></div>
         <div id="asd"></div>
         <a href="#target">to target</a>
         <a href="#target2">to target</a>
