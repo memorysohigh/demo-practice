@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/vue/2.6.2/vue.min.js"></script>
+</head>
+
+<body>
+    <div id="emit-example-argument">
+        <magic-eight-ball id="aa" @click.native='asd' @give-advice="showAdvice" :a.sync='msg'></magic-eight-ball>
+        <span v-text="msg"></span>
+        <!-- 和下面的一样 -->
+        <span>{{msg}}</span>
+        <div id="56" v-html="html"></div>
+        <div v-for="item in items" :key="item.id">
+            {{ item }}
+        </div>
+        <button v-on="{ mousedown: doThis, mouseup: doThat }">绑定方法对象</button>
+        <!-- v-on 同样支持不带参数绑定一个事件/监听器键值对的对象。注意当使用对象语法时，是不支持任何修饰器的。 -->
+        <current-user>
+            <template v-slot:default="slotProps">
+                {{ slotProps.user.firstName }}
+            </template>
+        </current-user>
+        <hr>
+        <div v-cloak>
+            {{ msg}}
+        </div>
+    </div>
+</body>
+<script>
+    var magicEightBall = Vue.component('magic-eight-ball', {
+        props: ['a'],
+        data: function () {
+            return {
+                possibleAdvice: ['Yes', 'No', 'Maybe'],
+            }
+        },
+        mounted() {
+            console.log(this.$listeners);
+        },
+        methods: {
+            giveAdvice: function () {
+                var randomAdviceIndex = Math.floor(Math.random() * this.possibleAdvice.length)
+                this.$emit('give-advice', this.possibleAdvice[randomAdviceIndex])
+                this.$emit('update:a', 'msg已经改变')
+
+            },
+
+        },
+        template: `
+    <button v-on:click="giveAdvice">
+        Click me for advice
+    </button>
+    `
+    })
+    var dd = new Vue({
+        data() {
+            return {
+                msg: 'asdasd',
+                html: '<h1>5456564</h1>',
+                items: {
+                    a: 1,
+                    b: 2,
+                    c: 3
+                },
+
+            }
+        },
+        components: {
+            magicEightBall: magicEightBall,
+            currentUser: ('currentUser', {
+                data() {
+                    return {
+                        user: {
+                            firstName: 'asdasda',
+                            lastName: 'asdasda',
+                        }
+                    }
+                },
+                mounted() {
+                    console.log('magicEightBall');
+
+                },
+                template: `<span>
+  <slot v-bind:user="user">
+    {{ user.lastName }}
+  </slot>
+</span>`
+            })
+        },
+        mounted() {},
+        methods: {
+            showAdvice: function (advice) {
+                alert(advice);
+
+            },
+            asd() {
+                console.log(123)
+            },
+            doThis() {
+                console.log('this');
+
+            },
+            doThat() {
+                console.log('that');
+
+            },
+        }
+    })
+    dd.$mount('#emit-example-argument')
+</script>
+
+</html>

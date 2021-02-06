@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <p>{{ foo }}</p>
+        <!-- 这里的 `foo` 不会更新！ -->
+        <button v-on:click="foo = 'baz'">Change it</button>
+        <hr>
+        <p>Original message: "{{ message }}"</p>
+        <p>Computed reversed message: "{{ reversedMessage }}"</p>
+        <hr><input type="text" v-model="fullName">
+        <div>firstName:{{firstName}} <br> lastName:{{lastName}}</div>
+    </div>
+</body>
+<script>
+    var obj = {
+        foo: 'bar',
+        message: 'Hello',
+        firstName: 'Foo',
+        lastName: 'Bar',
+    }
+
+    // Object.freeze(obj)
+
+    new Vue({
+        el: '#app',
+
+        data: function () {
+            return obj
+        },
+        computed: {
+            fullName: {
+                // getter
+                get: function () {
+                    return this.firstName + ' ' + this.lastName
+                },
+                // setter
+                set: function (newValue) {
+                    var names = newValue.split(' ')
+                    this.firstName = names[0]
+                    this.lastName = names[names.length - 1]
+                }
+            },
+            // 计算属性的 getter
+            reversedMessage: {
+                get: function () {
+                    // `this` 指向 vm 实例
+                    return this.message.split('').reverse().join('')
+                }
+            }
+        }
+    })
+</script>
+
+</html>
