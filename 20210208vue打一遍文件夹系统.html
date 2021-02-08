@@ -19,7 +19,6 @@
     Vue.component('componentB', {
         name: 'componentB',
         props: ['folder'],
-
         template: `
         <div>
             <details style="cursor: pointer;">
@@ -40,9 +39,7 @@
         name: 'componentA',
         props: ['folder'],
         data() {
-            return {
-
-            }
+            return {}
         },
         template: `<p>
             <componentB :folder=folder></componentB>
