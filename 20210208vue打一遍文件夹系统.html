@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- <input type="text"> -->
+
+        <component-a :folder='folder'></component-a>
+    </div>
+</body>
+<script>
+    Vue.component('componentB', {
+        name: 'componentB',
+        props: ['folder'],
+
+        template: `
+        <div>
+            <details style="cursor: pointer;">
+                <summary>{{folder.name}}:</summary>
+                <ul v-for='(value,key,index) in folder'>
+                    <slot></slot>
+                    <li style='list-style-type:none' v-if='key.includes("content")'>{{value}}</li>
+                    <li style='list-style-type:none' v-if='key.includes("folder")'>
+                        <componentA :folder='value'></componentA>
+                    </li>
+                </ul>
+            </details>
+        </div>`
+    })
+
+    // 组件components
+    Vue.component('componentA', {
+        name: 'componentA',
+        props: ['folder'],
+        data() {
+            return {
+
+            }
+        },
+        template: `<p>
+            <componentB :folder=folder></componentB>
+        </p>`, //全局组件直接用，不用在components里引用
+    })
+
+
+
+    var vm = new Vue({
+        el: "#app",
+        data() {
+            return {
+                folder: {
+                    name: '我的电脑',
+                    content1: '1.png',
+                    content2: '2.png',
+                    folder1: {
+                        name: '游戏',
+                        content: '游戏截图.png',
+                        folder1: {
+                            name: '游戏视频',
+                            content: '视频1.mp4',
+                            folder1: {
+                                name: '游戏配置',
+                                content: '设置.text',
+                            },
+                        },
+
+                    },
+                    folder2: {
+                        name: '网抑云音乐',
+                        content: '清空.mp3',
+                        folder1: {
+                            name: '歌词',
+                            content: '清空.text',
+                            folder1: {
+                                name: '歌单',
+                                content: '歌单一.text',
+                            },
+                        },
+                        folder2: {
+                            name: '海报',
+                            content: '邓紫棋.png',
+                        },
+                    }
+                }
+            }
+        },
+
+        mounted() {},
+        methods: {
+
+        },
+    })
+</script>
+
+</html>
