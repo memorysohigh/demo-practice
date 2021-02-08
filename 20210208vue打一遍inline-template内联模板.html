@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- <input type="text"> -->
+        <component-a></component-a>
+        <hr>
+        <component-a :b='a' inline-template>
+            <div>
+                <p>{{a+' '+b}}</p>
+                <p>These are compiled as the component's own template.</p>
+                <p>Not parent's transclusion content.</p>
+            </div>
+            <!-- 数据还是使用组件里的数据 -->
+        </component-a>
+    </div>
+</body>
+<script>
+    // 组件components
+    const componentA = {
+        template: `
+            <div>
+                <input type='text' />
+            </div>
+        `,
+        data() {
+            return {
+                a: 456,
+            }
+        },
+        props: ['b'],
+        mounted() {},
+        methods: {},
+    }
+
+
+
+    var vm = new Vue({
+        el: "#app",
+        data() {
+            return {
+                a: 123,
+            }
+        },
+        components: {
+            componentA: componentA,
+        },
+        mounted() {},
+        methods: {},
+    })
+</script>
+
+</html>
