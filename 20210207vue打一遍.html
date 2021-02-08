@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <current-user>
+        </current-user>
+    </div>
+</body>
+<script>
+    // 组件components
+    const componentA = Vue.component('async-example', function (resolve, reject) {
+        setTimeout(function () {
+            // 向 `resolve` 回调传递组件定义
+            resolve({
+                template: '<div>I am async!</div>'
+            })
+        }, 5000)
+    })
+
+
+
+    var vm = new Vue({
+        el: "#app",
+        data() {
+            return {}
+        },
+        components: {
+            currentUser: componentA,
+            treeFolderContents: ('treeFolderContents', {
+                template: `<ul>
+  <li v-for="child in children">
+    <tree-folder v-if="child.children" :folder="child"/>
+    <span v-else>{{ child.name }}</span>
+  </li>
+</ul>`
+            })
+        },
+        mounted() {},
+        methods: {},
+    })
+</script>
+
+</html>
