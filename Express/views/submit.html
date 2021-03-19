@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>hello 111静态资源</h1>
+    <form id="submit">
+        名字：<input type="text" name="name" value="" id=""><br>
+        邮箱：<input type="text" name="email" value="" id=""><br>
+        电话：<input type="text" name="tel" value="" id=""><br>
+        <input type="submit" value="submit">
+    </form>
+</body>
+<script src="../node_modules/jquery/dist/jquery.min.js"></script>
+<script>
+    $("#submit").on('submit', function (e) {
+        e.preventDefault()
+
+        // serialize() 方法通过序列化表单值创建 URL 编码文本字符串。
+        // 您可以选择一个或多个表单元素（如输入和/或文本区），或表单元素本身。
+        // 序列化的值可在生成 AJAX 请求时用于 URL 查询字符串中。
+        var formData = $(this).serialize()
+        $.ajax({
+            url: '/b',
+            type: 'POST',
+            data: formData,
+            dataType: 'json'
+        })
+    });
+</script>
+
+</html>
