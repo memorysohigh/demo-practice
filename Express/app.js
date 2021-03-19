@@ -1,6 +1,7 @@
 var express = require('express')
 var bodyParser = require('body-parser')
 var router = require('./routers/router')
+var session = require('express-session')
 
 var app = express()
 
@@ -14,6 +15,12 @@ app.use(bodyParser.urlencoded({
 }))
 // parse application/json
 app.use(bodyParser.json())
+
+app.use(session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: true
+}))
 
 app.use(router)
 

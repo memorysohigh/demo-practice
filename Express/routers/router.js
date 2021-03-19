@@ -1,7 +1,6 @@
 var express = require('express')
 var router = express.Router()
 
-
 router.get('/', function (req, res) {
     res.render('index.html', {
         tittle: '模板123456引擎'
@@ -24,7 +23,9 @@ router.post('/b', function (req, res) {
     console.log(req.body);
     content.dataTime = '2017-11-05'
     contents.unshift(content)
-    res.send('123456')
+    req.session.cookie = {}
+    res.send(req.session)
+    console.log(req.session);
     // res.redirect('/')
 })
 
