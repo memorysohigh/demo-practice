@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app"></div>
+</body>
+<script src="./node_modules/vue/dist/vue.min.js"></script>
+<script>
+    var state = Vue.observable({
+        count: 100
+    })
+    var res = Vue.compile(`
+    <div>
+        <div><span>{{ msg }}</span></div>
+        <div><span>{{ a }}</span></div>
+        <div><span>{{ counts }}</span></div>
+        <button @click='add()'>+++</button>
+    </div>
+    `)
+    new Vue({
+        el: '#app',
+        data: {
+            a: 0,
+            msg: 'hello',
+            count: state.count,
+            m: 1
+        },
+        computed: {
+            counts() {
+                new Promise((resolve, reject) => {
+                    setTimeout(() => {
+                        resolve(this.a)
+                    }, 0);
+                }).then(res => {
+                    this.a = res
+                })
+                return this.a
+            }
+        },
+        render: res.render,
+        staticRenderFns: res.staticRenderFns,
+        methods: {
+            add() {
+                this.a += 10
+            }
+        }
+    })
+</script>
+
+</html>

@@ -3,61 +3,52 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+    <script src="./node_modules/vue/dist/vue.min.js"></script>
 </head>
 
 <body>
-    <div class="test-wrap" id="app">
-        <input type="text" v-model="kk" />
-        <test-component v-model='kk' @input="input"></test-component>
+    <div id="app">
+        <h1>{{a}}</h1>
+        <input type="text" v-model='a' name="" id="">
+        <com-a v-model='a'></com-a>
     </div>
-</body>
-<script>
-    var vm = new Vue({
-        // el: '#app',
-        name: "Test",
-        data() {
-            return {
-                initAreaInfo: [],
-                kk: "father",
-            };
-        },
-        components: {
-            testComponent: {
-                template: `<input v-model='value' @input="out">`,
-                data() {
-                    return {};
-                },
-                props: ["value"],
-                // watch: {
-                //     kk(newValue) {
-                //         this.val = newValue;
-                //     },
-                //     val(newValue) {
-                //         this.$emit("input", newValue);
-                //     },
-                // },
-                methods: {
-                    out(e) {
-                        this.$emit('input', e.target.value)
-                    }
+    <script>
+        var comA = {
+            template: `
+        <input type="text" v-model='value' @input='asd()' placeholder='组件输入框'>
+        `,
+            data() {
+                return {
+                    b: ''
                 }
             },
-        },
-        mounted() {
-            me = this;
-        },
-        methods: {
-            input(el) {
-                console.log(me.kk);
-                me.kk = el;
-                console.log(me.kk);
+            model: {
+                prop: 'value',
+                event: 'change'
             },
-        },
-    })
-    vm.$mount('#app')
-</script>
+            props: ['value'],
+            methods: {
+                asd() {
+                    this.$emit('change', this.value)
+                }
+            }
+        }
+
+        new Vue({
+            el: '#app',
+            data() {
+                return {
+                    a: 1
+                }
+            },
+            components: {
+                comA: comA
+            }
+        })
+    </script>
+</body>
 
 </html>
