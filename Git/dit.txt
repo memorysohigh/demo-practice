@@ -3,9 +3,15 @@ asdasd
 commit 后asd
 gitasd
 
+<<<<<<< HEAD
 asd.asd
 asdasd
 asdasd
 
 这是在lbcomp上改的asdasdas
 3asd
+=======
+asd.
+asdasdasd
+asd
+>>>>>>> laiboComputer
