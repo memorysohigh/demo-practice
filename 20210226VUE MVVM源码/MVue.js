@@ -39,8 +39,9 @@ const compileUtil = {
         let a = expr.split('.')
         let b = a.pop()
         a.reduce((pre, current) => {
-            return pre[current];
-        }, vm.$data)[b] = inputVal
+                return pre[current];
+            },
+            vm.$data)[b] = inputVal
     },
     getContentVal(expr, vm) {
         return expr.replace(/\{\{(.+?)\}\}/g, (...args) => {

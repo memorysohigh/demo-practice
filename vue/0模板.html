@@ -34,13 +34,21 @@
     var vm = new Vue({
         el: "#app",
         data() {
-            return {}
+            return {
+                asd: '123'
+            }
+        },
+        created() {
+            console.log('this', this);
         },
         components: {
             componentA: componentA,
         },
         mounted() {},
-        methods: {},
+        methods: {
+            a() {}
+
+        },
     })
 </script>
 
