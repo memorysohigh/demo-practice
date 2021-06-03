@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@next"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">{{count}}
+        <component1 :me='me' :count='count'></component1>
+        <teleport to="#modals">
+            <div>A</div>
+        </teleport>
+        <teleport to="#modals">
+            <div>B</div>
+        </teleport>
+
+        <!-- result-->
+        <div id="modals">
+            <div>A</div>
+            <div>B</div>
+        </div>
+    </div>
+
+    <script>
+        const {
+            h,
+            ref,
+            reactive,
+            toRefs,
+            toRef
+        } = Vue
+        let component1 = {
+            props: ['me', 'count'],
+            data() {
+                return {
+                    l: 123
+                }
+            },
+            template: `<div>{{readersNumber}}--{{book.title}}
+                <p>{{me}}</p>
+                <p>{{count}}</p>
+                <p>{{k}}</p>
+                <p>{{readersNumber}}</p>:<p>{{book.title}}</p>
+                </div>`,
+            setup(props) {
+                let {
+                    me,
+                    count
+                } = toRefs(props)
+                const k = toRef(props, me)
+                const readersNumber = ref(0)
+                const book = reactive({
+                    title: 'Vue 3 Guide'
+                })
+                // Please note that we need to explicitly expose ref value here
+                return {
+                    me,
+                    count,
+                    k,
+                    readersNumber,
+                    book
+                }
+            },
+            mounted() {}
+        }
+
+        const app = Vue.createApp({
+            components: {
+                component1: component1
+            },
+            data() {
+                return {
+                    me: 56,
+                    count: 1,
+                }
+            },
+            mounted() {}
+        }).mount('#app')
+    </script>
+</body>
+
+</html>
