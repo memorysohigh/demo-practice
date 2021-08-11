@@ -6,11 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://unpkg.com/vue@next"></script>
+    <script src="https://unpkg.com/lodash@4.17.20/lodash.min.js"></script>
     <title>Document</title>
 </head>
 
 <body>
-    <div id="app">{{count}}
+    <div id="app">
+        <button @click='dou'>防抖</button>
+        {{count}}
         <component1 :me='me' :count='count'></component1>
         <teleport to="#modals">
             <div>A</div>
@@ -79,7 +82,20 @@
                     count: 1,
                 }
             },
-            mounted() {}
+            created() {
+                console.dir(_);
+                this.dou = _.debounce(this.click, 500)
+            },
+            mounted() {
+
+            },
+            methods: {
+                // 用 Lodash 的防抖函数
+                click() {
+                    console.log(123456);
+                }
+            }
+
         }).mount('#app')
     </script>
 </body>

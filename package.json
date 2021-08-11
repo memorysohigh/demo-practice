@@ -1,1 +1,8 @@
-{}
+{
+  "type": "module",
+  "dependencies": {
+    "express-http-proxy": "^1.6.2",
+    "multer": "^1.4.2",
+    "mysql": "^2.18.1"
+  }
+}

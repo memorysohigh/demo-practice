@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+
+<body>
+    <div id="app">
+        {{message}}
+    </div>
+    <script>
+        const app = Vue.createApp({
+            props: ['user', ],
+            data() {
+                return {
+                    message: 'hello vue3'
+                }
+            },
+            setup(props) {
+                const co = Vue.ref(0)
+                console.log(co);
+                co.value = 1
+
+                Vue.watch()
+
+                Vue.onMounted(() => {
+                    console.log("onMounted:" + 123456);
+                })
+                Vue.onBeforeMount(() => {
+                    console.log('onBeforeMount:' + 'onBeforeMount');
+                })
+                return {
+                    co
+                }
+            },
+            computed: {},
+            mounted() {
+                console.log("mounted:" + 555555);
+            },
+            beforeMount() {
+                console.log('beforeMount:' + 999999);
+            },
+            created() {
+                console.log('this.co:' + this.co);
+
+            },
+            methods: {},
+        }, {
+            user: 'llllddddsasda'
+        })
+        app.mount('#app')
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,1 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d0d7e12"],{7960:function(e,n,t){"use strict";t.r(n),n["default"]={fetch:function(e){return window.localStorage.getItem(e)},save:function(e,n){window.localStorage.setItem(e,n)}}}}]);

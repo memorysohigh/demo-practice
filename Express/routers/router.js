@@ -1,10 +1,9 @@
 var express = require('express')
 var router = express.Router()
 
-router.get('/', function (req, res) {
-    res.render('index.html', {
-        tittle: '模板123456引擎'
-    })
+router.get('/', function (req, res, next) {
+    res.send(__dirname + '/../views/index.html')
+    next()
 })
 
 router.get('/submit', function (req, res) {
@@ -28,5 +27,8 @@ router.post('/b', function (req, res) {
     console.log(req.session);
     // res.redirect('/')
 })
+console.log(module.exports === exports)
+exports.a = 123
+console.log(module.exports === exports)
 
 module.exports = router
