@@ -6,6 +6,7 @@ let cache = new lru({
 })
 cache.set('a', 111111111111)
 console.log(cache.get('a'));
+
 setTimeout(() => {
     console.log(cache.get('a'));
 }, 1500);
