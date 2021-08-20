@@ -12,12 +12,38 @@
 <body>
     <div id="app">
         {{message}}
+        <component-a class="lasd" @click='asd' :a='hh' v-model:hh='hh' v-model:prop='prop'></component-a>
     </div>
     <script>
+        const componentA = {
+            inheritAttrs: true,
+            template: `<div>
+                <h1 @click="click($event)">{{prop}}</h1>
+                <h1 :class='$attrs.class' @click='$attrs.onClick'>{{hh}}</h1>
+            </div> `,
+            props: {
+                hh: Number,
+                prop: String
+            },
+            emits: ['update:prop', 'update:hh'],
+            methods: {
+                click(e) {
+                    // console.log(e);
+                    console.log(9999999999, this.$attrs);
+                    this.$emit('update:hh', 11111111111111)
+                    this.$emit('update:prop', '99999999999999999999999999')
+                }
+            }
+        }
         const app = Vue.createApp({
             props: ['user', ],
+            components: {
+                componentA
+            },
             data() {
                 return {
+                    prop: '88',
+                    hh: 11,
                     message: 'hello vue3'
                 }
             },
@@ -49,7 +75,11 @@
                 console.log('this.co:' + this.co);
 
             },
-            methods: {},
+            methods: {
+                asd() {
+                    console.log(6666);
+                }
+            },
         }, {
             user: 'llllddddsasda'
         })
