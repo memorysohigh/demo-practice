@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form method="post">
+        <input type="text" name="username" value="">
+        <input type="button" value="Echo Username" onclick="console.log(username.value)">
+    </form>
+    <button id="myBtn">按钮</button>
+    <button id="myBtn1">按钮1</button>
+    <button id="myBtn3">按钮3</button>
+
+
+</body>
+<script>
+    let btn = document.getElementById("myBtn");
+    let handler = function (event) {
+        switch (event.type) {
+            case "click":
+                console.log("Clicked");
+                break;
+            case "mouseover":
+                event.target.style.backgroundColor = "red";
+                break;
+            case "mouseout":
+                event.target.style.backgroundColor = "";
+                break;
+        }
+    };
+    btn.onclick = handler;
+    btn.onmouseover = handler;
+    btn.onmouseout = handler;
+
+
+
+    let btn1 = document.getElementById("myBtn1");
+    btn1.onclick = function (event) {
+        console.log(event.eventPhase)
+        console.log("Clicked");
+        event.stopPropagation();
+    };
+    document.body.onclick = function (event) {
+        console.log("Body clicked");
+    };
+
+    let btn3 = document.getElementById("myBtn3");
+    btn3.onclick = (event) => {
+        console.log(123, event.eventPhase); // 2
+    };
+    document.body.addEventListener("click", (event) => {
+        console.log(999, event.eventPhase); // 1
+    }, true);
+    document.body.onclick = (event) => {
+        console.log(321, event.eventPhase); // 3
+    };
+</script>
+
+</html>
