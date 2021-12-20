@@ -45,7 +45,7 @@ function start() {
                 break;
             }
         }
-        // response.end('123');
+        response.end('123');
     }
 
     http.createServer(onRequest).listen(8888);

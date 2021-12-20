@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="">
+
+    </style>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+
+<body>
+    <div id="counter">
+        <com></com>
+        <div>
+            <span v-for='item in a'>{{item}}</span>
+            <div>{{b}}</div>
+        </div>
+    </div>
+</body>
+<script>
+    const Counter = {
+        data() {
+            return {
+                counter: 0,
+                a: [1, 2, 3],
+            }
+        },
+        mounted() {
+            this.change()
+        },
+        methods: {
+            change() {
+                this.$set(this, 'b', 8)
+            },
+        }
+    }
+
+    const app = Vue.createApp(Counter)
+    let com = app.component('com', {
+        template: `<p>789com987</p>`,
+        data() {
+            return {
+                com: 0
+            }
+        }
+    })
+    console.log(333333, Vue)
+    console.log(8888888, com);
+    console.log(123, app);
+    let vm = app.mount('#counter')
+    console.log(321, vm); //Proxy
+    console.log(app == com);
+</script>
+
+</html>
