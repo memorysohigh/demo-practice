@@ -19,3 +19,4 @@ asd
 >>>>>>> laiboComputer>>>>>>> laiboComputer>>>>>>> laiboComputer>>>>>>> laiboComputer>>>>>>> laiboComputer>>>>>>> laiboComputer>>>>>>> laiboComputer>>>>>>> laiboComputer>>>>>>> laiboComputer>>>>>>> laiboComputer>>>>>>> laiboComputer>>>>>>> laiboComputer>>>>>>> laiboComputer>>>>>>> laiboComputer>>>>>>> laiboComputer
 
 master 1
+master 2
