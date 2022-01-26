@@ -23,8 +23,8 @@ readableStream.on('open', () => {
 readableStream.on('error', () => {
     console.log('读取文件连接打开错误');
 })
-    readableStream.on('data',(data)=>{
-    console.log('写入',data)
+readableStream.on('data', (data) => {
+    console.log('写入', data)
     writeableStream.write(data)
 })
 readableStream.on('close', () => {
