@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./js/wue.js"></script>
+</head>
+<body>
+<div id="app">
+    <div class="header">header
+        <input v-model="pp"></input>
+        <input v-model="ll.l"></input>
+    </div>
+    <div class="content">
+        <span>{{ name }}--{{ person.age }}--{{ person.sex }}</span>
+        <span>{{ person.age }}</span>
+        <span>{{ person.sex }}</span>
+        <span>{{ person.height }}</span>
+    </div>
+    <div class="footer">footer
+        <input type="text" v-model="vv">
+        <div v-html='html'></div>
+        <div v-text='text'></div>
+    </div>
+</div>
+</body>
+<script>
+    let wue = new Wue({
+        el: '#app',
+        data() {
+            return {
+                name: '王建杭',
+                pp: 11,
+                vv: 88,
+                person: {
+                    age: 18,
+                    sex: '男',
+                    height: '180KG'
+                },
+                html:`<h1>我是v-HTML<h1>`,
+                text:'我是v-text',
+                ll:{l:'我是啦啦啦啦啦'}
+            }
+        }
+    })
+</script>
+<style>
+    .header{
+        height: 200px;
+        background-color: #00B7FF;
+    }
+    .content{
+        height: 200px;
+        background-color: orange;
+    }
+    .footer{
+        height: 200px;
+        background-color: lightskyblue;
+    }
+</style>
+</html>

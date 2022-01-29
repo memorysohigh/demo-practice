@@ -306,97 +306,97 @@ module.exports = {
 
 
 
-// module.exports = {
-//     mode: 'development',
-//     entry: ['./src/file_1.js', './src/file_2.js'],
-//     output: {
-//         filename: 'bundle.js',
-//     },
-//     module: { //loader
-//         rules: [{
-//             test: /\.css$/,
-//             use: [{
-//                 loader: 'style-loader'
-//             }, {
-//                 loader: 'css-loader',
-//                 options: {
-//                     modules: true
-//                 }
-//             }, {
-//                 loader: 'sass-loader'
-//             }]
-//         }]
-//     },
-//     plugins: [
-//         new webpack.ProgressPlugin(),
-//         new HtmlWebpackPlugin({
-//             //HtmlWebpackPlugin 将生成一个 HTML 文件，
-//             // 并在文件中使用 script 引入一个名为 output的已打包输出 的 JS 文件。即bundle.js
-//             template: "./src/index/html"
-//         }),
-//     ]
-// }
-// // webpack是个具有apply方法的对象
-// // apply 方法会被 webpack compiler 调用
-// // 并且在 整个 编译生命周期都可以访问 compiler 对象。
+module.exports = {
+    mode: 'development',
+    entry: ['./src/file_1.js', './src/file_2.js'],
+    output: {
+        filename: 'bundle.js',
+    },
+    module: { //loader
+        rules: [{
+            test: /\.css$/,
+            use: [{
+                loader: 'style-loader'
+            }, {
+                loader: 'css-loader',
+                options: {
+                    modules: true
+                }
+            }, {
+                loader: 'sass-loader'
+            }]
+        }]
+    },
+    plugins: [
+        new webpack.ProgressPlugin(),
+        new HtmlWebpackPlugin({
+            //HtmlWebpackPlugin 将生成一个 HTML 文件，
+            // 并在文件中使用 script 引入一个名为 output的已打包输出 的 JS 文件。即bundle.js
+            template: "./src/index/html"
+        }),
+    ]
+}
+// webpack是个具有apply方法的对象
+// apply 方法会被 webpack compiler 调用
+// 并且在 整个 编译生命周期都可以访问 compiler 对象。
 
-// module.exports = {
-//     entry: './src/index.js',
-//     output: {
-//         filename: 'bundle.js',
-//         path: path.resolve(__dirname, 'dist')
-//     },
-//     module: {
-//         rules: [{
-//                 test: /\.js$/,
-//                 loader: 'babel-loader?cacheDirectory=true',
-//                 include: [
-//                     resolve('src'),
-//                 ],
-//                 exclude: path.resolve(__dirname, 'node_modules')
-//             },
-//             {
-//                 test: /\.css$/,
-//                 use: [
-//                     'style-loader',
-//                     'css-loader',
-//                     'postcss-loader'
+module.exports = {
+    entry: './src/index.js',
+    output: {
+        filename: 'bundle.js',
+        path: path.resolve(__dirname, 'dist')
+    },
+    module: {
+        rules: [{
+                test: /\.js$/,
+                loader: 'babel-loader?cacheDirectory=true',
+                include: [
+                    resolve('src'),
+                ],
+                exclude: path.resolve(__dirname, 'node_modules')
+            },
+            {
+                test: /\.css$/,
+                use: [
+                    'style-loader',
+                    'css-loader',
+                    'postcss-loader'
 
-//                 ]
-//             }, {
-//                 test: /\.(png|svg|jpg|gif)$/,
-//                 loader: 'url-loader',
-//                 options: {
-//                     limit: 10000,
-//                     name: utils.assetsPath('img/[name].[hash:7].[ext]')
-//                 }
-//             }
-//         ]
-//     }
-// }
+                ]
+            }, {
+                test: /\.(png|svg|jpg|gif)$/,
+                loader: 'url-loader',
+                options: {
+                    limit: 10000,
+                    name: utils.assetsPath('img/[name].[hash:7].[ext]')
+                }
+            }
+        ]
+    }
+}
 
-// define("alpha", ["require", "exports", "beta"], function (require, exports, beta) {
-//     exports.verb = function () {
-//         return beta.verb();
-//         //Or:
-//         return require("beta").verb();
-//     }
-// });
-// define(["alpha"], function (alpha) {
-//     return {
-//         verb: function () {
-//             return alpha.verb() + 2;
-//         }
-//     };
-// });
-// define({
-//     add: function (x, y) {
-//         return x + y;
-//     }
-// });
-// define(function (require, exports, module) {
-//     var a = require('a'),
-//         b = require('b');
+define("alpha", ["require", "exports", "beta"], function (require, exports, beta) {
+    exports.verb = function () {
+        return beta.verb();
+        //Or:
+        return require("beta").verb();
+    }
+});
+define(["alpha"], function (alpha) {
+    return {
+        verb: function () {
+            return alpha.verb() + 2;
+        }
+    };
+});
+define({
+    add: function (x, y) {
+        return x + y;
+    }
+});
+define(function (require, exports, module) {
+    var a = require('a'),
+        b = require('b');
 
-//     exports.action = function () {};
-// });
+    exports.action = function () {};
+});
