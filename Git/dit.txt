@@ -20,6 +20,10 @@ asd
 
 master 1
 master 2
+<<<<<<< HEAD
 master 3
 
 revert 2
+=======
+master 3
+>>>>>>> db40f8932906747663e7581dab6ef913d316e288

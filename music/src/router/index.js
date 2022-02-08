@@ -6,10 +6,23 @@ Vue.use(VueRouter)
 const routes = [
   {
     path:'/',
-    redirect:'/home'
-  },{
-    path:'/home',
-    component:()=>import('@/views/home')
+    redirect:'/tuijian'
+  },
+  {
+    path:'/tuijian',
+    component:()=>import('@/views/Tuijian')
+  },
+  {
+    path:'/geshou',
+    component:()=>import('@/views/Geshou')
+  },
+  {
+    path:'/paihang',
+    component:()=>import('@/views/Paihang')
+  },
+  {
+    path:'/sousuo',
+    component:()=>import('@/views/Sousuo')
   },
 ]
 

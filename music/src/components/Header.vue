@@ -1,5 +1,5 @@
 <template>
-  <div class="header">
+  <div class="header" @click="fn">
     <div class="left">
       <img src="@/../public/header-left.png" alt="">
     </div>
@@ -7,13 +7,28 @@
     <div class="right">
       <img src="@/../public/header-right.png" alt="">
     </div>
-
   </div>
 </template>
 
 <script>
 export default {
-  name: "Header"
+  name: "Header",
+  data(){
+    return {
+      theme:[1,2,3],
+      index:1,
+    }
+  },
+  methods:{
+    fn() {
+      console.log(this.index,98888)
+      this.index++
+      if (this.index>this.theme.length) {
+        this.index = 1
+      }
+      document.documentElement.setAttribute('data-theme', this.index)
+    },
+  }
 }
 </script>
 
@@ -23,7 +38,7 @@ export default {
 .header {
   height: 100px;
   width: 100%;
-  @include bg_colot($wangyihong);
+  @include bg_color();
   display: flex;
   justify-content: space-between;
 

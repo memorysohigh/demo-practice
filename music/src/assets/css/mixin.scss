@@ -26,15 +26,14 @@
 
 //限制行数
 @mixin clamp($row) {
-  overflow: hidden;
-  text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  webkit-1ine-clamp: $row;
+  -webkit-line-clamp: $row;
+  overflow: hidden;
 }
 
-@mixin bg_colot($color) {
-  background-color: $color;
+@mixin bg_color() {
+  background-color: $wangyihong;
   [data-theme = '1'] & {
     background-color: $wangyihong;
   }
@@ -45,5 +44,65 @@
 ;
   [data-theme = '3'] & {
     background-color: $yejianmoshi;
+  }
+}
+
+@mixin bg_sub_back_ground_color() {
+  background-color: $background-color-sub-wangyihong;
+  [data-theme = '1'] & {
+    background-color: $background-color-sub-wangyihong;
+  }
+;
+  [data-theme = '2'] & {
+    background-color: $background-color-sub-wangyihong;
+  }
+;
+  [data-theme = '3'] & {
+    background-color: $background-color-sub-yejianmoshi
+  }
+}
+
+@mixin font_color() {
+ color: $font-color-wangyihong;
+  [data-theme = '1'] & {
+    color: $font-color-wangyihong;
+  }
+;
+  [data-theme = '2'] & {
+    color: $font-color-qqlv;
+  }
+;
+  [data-theme = '3'] & {
+    color: $font-color-yejianmoshi;
+  }
+}
+
+@mixin font_active_color() {
+  color: $font-active-color-wangyihong;
+  [data-theme = '1'] & {
+    color: $font-active-color-wangyihong;
+  }
+;
+  [data-theme = '2'] & {
+    color: $font-active-color-qqlv;
+  }
+;
+  [data-theme = '3'] & {
+    color: $font-active-color-yejianmoshi;
+  }
+}
+
+@mixin active_border_color() {
+  border-color: $border-color-wangyihong;
+  [data-theme = '1'] & {
+    border-color: $border-color-wangyihong;
+  }
+;
+  [data-theme = '2'] & {
+    border-color: $border-color-qqlv;
+  }
+;
+  [data-theme = '3'] & {
+    border-color: $border-color-yejianmoshi;
   }
 }
