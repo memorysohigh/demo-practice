@@ -36,7 +36,7 @@ export default {
   width: 100%;
   @include bg_sub_back_ground_color();
 
-  .song {
+  .song-top {
     width: 100%;
     height: 84px;
     line-height: 84px;

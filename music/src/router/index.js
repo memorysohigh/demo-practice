@@ -10,19 +10,29 @@ const routes = [
   },
   {
     path:'/tuijian',
-    component:()=>import('@/views/Tuijian')
+    component:()=>import('@/views/Tuijian/Tuijian'),
+    children:[
+      {
+        path:'gedanlist/:id/:type',
+        component:()=>import('@/views/Tuijian/GeDanList')
+      },
+      {
+        path:'zhuanjilist/:id/:type',
+        component:()=>import('@/views/Tuijian/GeDanList')
+      }
+    ]
   },
   {
     path:'/geshou',
-    component:()=>import('@/views/Geshou')
+    component:()=>import('@/views/Geshou/Geshou')
   },
   {
     path:'/paihang',
-    component:()=>import('@/views/Paihang')
+    component:()=>import('@/views/Paihang/Paihang')
   },
   {
     path:'/sousuo',
-    component:()=>import('@/views/Sousuo')
+    component:()=>import('@/views/Sousuo/Sousuo')
   },
 ]
 

@@ -10,9 +10,8 @@
 </template>
 
 <script>
-import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
-import 'swiper/swiper-bundle.css'
-// import 'swiper/css/swiper.css'
+import { swiper, swiperSlide } from "vue-awesome-swiper";
+import "swiper/dist/css/swiper.css";
 
 export default {
   name: "Banner",
@@ -28,7 +27,7 @@ export default {
       swiperOptions: {
         loop: true,
         autoplay: {
-          delay: 100,
+          delay: 1000,
           stopOnLastSlide: false,
           disableOnInteraction: false
         },
@@ -48,8 +47,8 @@ export default {
     }
   },
   components: {
-    Swiper,
-    SwiperSlide
+    swiper,
+    swiperSlide
   },
 }
 </script>

@@ -32,6 +32,11 @@
   overflow: hidden;
 }
 
+@mixin bg_img($img_path,$width,$height){
+  background-image: url($img_path);
+  background-size: $width $height;
+}
+
 @mixin bg_color() {
   background-color: $wangyihong;
   [data-theme = '1'] & {

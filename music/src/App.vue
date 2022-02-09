@@ -1,8 +1,10 @@
 <template>
   <div class="app">
-    <Header></Header>
-    <Tabbar></Tabbar>
-    <router-view></router-view>
+    <div class="opstion">
+      <Header></Header>
+      <Tabbar></Tabbar>
+    </div>
+    <router-view class="view"></router-view>
   </div>
 </template>
 
@@ -28,31 +30,17 @@ export default {
 <style scoped lang="scss">
 @import "../src/assets/css/theme";
 
-.home {
-  height: 100%;
-  width: 100%;
-
-  .them {
+.app{
+  .opstion{
     position: fixed;
-    bottom: 0px;
+    top: 0px;
     left: 0px;
-
-    .box1, .box2, .box3 {
-      height: 150px;
-      width: 150px;
-    }
-
-    .box1 {
-      background-color: $wangyihong;
-    }
-
-    .box2 {
-      background-color: $qqlv;
-    }
-
-    .box3 {
-      background-color: $yejianmoshi;
-    }
+    width: 100%;
+    z-index: 99;
+  }
+  .view{
+    margin-top: 184px;
+    height: 3842-184px;
   }
 }
 
