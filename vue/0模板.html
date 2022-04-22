@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>事件循环、宏任务、微任务的神奇之处</title>
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
 </head>
 
@@ -25,9 +25,28 @@
         data() {
             return {}
         },
-        mounted() {},
-        methods: {},
+        mounted() {
+            this.e()
+            this.f()
+            this.g()
+        },
+        methods: {
+            e() {
+                console.log(6);
+            },
+            f() {
+                setTimeout(() => {
+                    console.log(7);
+                }, 0);
+            },
+            g() {
+                Promise.resolve().then(() => {
+                    console.log(8);
+                })
+            }
+        },
     }
+
 
 
 
@@ -44,9 +63,38 @@
         components: {
             componentA: componentA,
         },
-        mounted() {},
+        mounted() {
+            this.a()
+            this.b()
+            this.c()
+            this.d()
+        },
         methods: {
-            a() {}
+            a() {
+                console.log(1);
+                // this.b()
+            },
+            b() {
+                setTimeout(() => {
+                    console.log(3);
+                })
+            },
+            c() {
+                Promise.resolve().then(() => {
+                    console.log((4));
+                    // this.d()
+                })
+            },
+            d() {
+                Promise.resolve().then(
+                    () => {
+                        // setTimeout(() => {
+                        console.log(5);
+                        // }, 0)
+                    }
+                )
+                console.log(2);
+            }
 
         },
     })

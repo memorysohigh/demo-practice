@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>表单设计器kcz</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="http://unpkg.com/k-form-design/lib/k-form-design.css">
+</head>
+
+<body>
+    <div class="app">
+        <k-form-build ref="KFB" @submit="handleSubmit" @change="change" :value="jsonData"></k-form-build>
+        <button @click="getData">提交</button>
+    </div>
+    <script src="http://cdn.kcz66.com/vue.min.js"></script>
+    <script src="http://unpkg.com/k-form-design/lib/k-form-design.umd.min.js"></script>
+    <script>
+        let jsonData = {
+            "list": [{
+                "type": "input",
+                "label": "输入框",
+                "options": {
+                    "type": "text",
+                    "width": "100%",
+                    "defaultValue": "",
+                    "placeholder": "请输入",
+                    "clearable": false,
+                    "maxLength": null,
+                    "addonBefore": "",
+                    "addonAfter": "",
+                    "hidden": false,
+                    "disabled": false
+                },
+                "model": "input_1649751107983",
+                "key": "input_1649751107983",
+                "help": "",
+                "rules": [{
+                    "required": false,
+                    "message": "必填项"
+                }]
+            }, {
+                "type": "input",
+                "label": "输入框",
+                "icon": "icon-write",
+                "options": {
+                    "type": "text",
+                    "width": "100%",
+                    "defaultValue": "",
+                    "placeholder": "请输入",
+                    "clearable": false,
+                    "maxLength": null,
+                    "addonBefore": "",
+                    "addonAfter": "",
+                    "hidden": false,
+                    "disabled": false
+                },
+                "model": "input_1649751108464",
+                "key": "input_1649751108464",
+                "help": "",
+                "rules": [{
+                    "required": false,
+                    "message": "必填项"
+                }]
+            }, {
+                "type": "input",
+                "label": "输入框",
+                "icon": "icon-write",
+                "options": {
+                    "type": "text",
+                    "width": "100%",
+                    "defaultValue": "",
+                    "placeholder": "请输入",
+                    "clearable": false,
+                    "maxLength": null,
+                    "addonBefore": "",
+                    "addonAfter": "",
+                    "hidden": false,
+                    "disabled": false
+                },
+                "model": "input_1649751108931",
+                "key": "input_1649751108931",
+                "help": "",
+                "rules": [{
+                    "required": false,
+                    "message": "必填项"
+                }]
+            }, {
+                "type": "input",
+                "label": "输入框",
+                "icon": "icon-write",
+                "options": {
+                    "type": "text",
+                    "width": "100%",
+                    "defaultValue": "",
+                    "placeholder": "请输入",
+                    "clearable": false,
+                    "maxLength": null,
+                    "addonBefore": "",
+                    "addonAfter": "",
+                    "hidden": false,
+                    "disabled": false
+                },
+                "model": "input_1649751109394",
+                "key": "input_1649751109394",
+                "help": "",
+                "rules": [{
+                    "required": false,
+                    "message": "必填项"
+                }]
+            }],
+            "config": {
+                "layout": "horizontal",
+                "labelCol": {
+                    "xs": 4,
+                    "sm": 4,
+                    "md": 4,
+                    "lg": 4,
+                    "xl": 4,
+                    "xxl": 4
+                },
+                "labelWidth": 100,
+                "labelLayout": "flex",
+                "wrapperCol": {
+                    "xs": 18,
+                    "sm": 18,
+                    "md": 18,
+                    "lg": 18,
+                    "xl": 18,
+                    "xxl": 18
+                },
+                "hideRequiredMark": false,
+                "customStyle": ""
+            }
+        }
+        let vm = new Vue({
+            el: '.app',
+            data: {
+                jsonData
+            },
+            methods: {
+                handleSubmit(p) {
+                    console.log(p);
+                    // 通过表单提交按钮触发，获取promise对象
+                    p().then(res => {
+                            // 获取数据成功
+                            alert(JSON.stringify(res))
+                        })
+                        .catch(err => {
+                            console.log(err, '校验失败')
+                        })
+                },
+                getData() {
+                    // 通过函数获取数据
+                    this.$refs.KFB.getData().then(res => {
+                            // 获取数据成功
+                            alert(JSON.stringify(res))
+                        })
+                        .catch(err => {
+                            console.log(err, '校验失败')
+                        })
+                },
+                change(value, key) {
+                    this.$refs.KFB.setData({
+                        input_1649751109394: value
+                    })
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
