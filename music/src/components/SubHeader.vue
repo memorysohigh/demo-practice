@@ -1,11 +1,11 @@
 <template>
   <div class="header" @click="fn">
     <div class="left">
-      <img src="@/../public/header-left.png" alt="">
+      <img src="@/assets/images/back.png" alt="" @click.stop="back">
     </div>
-    <p class="tittle">建行音乐</p>
+    <p class="tittle">{{ title }}</p>
     <div class="right">
-      <img src="@/../public/header-right.png" alt="">
+      <img src="@/assets/images/more.png" alt="">
     </div>
   </div>
 </template>
@@ -13,17 +13,27 @@
 <script>
 export default {
   name: "Header",
-  data(){
-    return {
-      theme:[1,2,3],
-      index:1,
+  props: {
+    title: {
+      type: String,
+      default: '',
+      required: true,
     }
   },
-  methods:{
+  data() {
+    return {
+      theme: [1, 2, 3],
+      index: 1,
+    }
+  },
+  methods: {
+    back() {
+      window.history.back()
+    },
     fn() {
-      console.log(this.index,98888)
+      console.log(this.index, 98888)
       this.index++
-      if (this.index>this.theme.length) {
+      if (this.index > this.theme.length) {
         this.index = 1
       }
       document.documentElement.setAttribute('data-theme', this.index)

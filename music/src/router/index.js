@@ -6,10 +6,33 @@ Vue.use(VueRouter)
 const routes = [
   {
     path:'/',
-    redirect:'/home'
-  },{
-    path:'/home',
-    component:()=>import('@/views/home')
+    redirect:'/tuijian'
+  },
+  {
+    path:'/tuijian',
+    component:()=>import('@/views/Tuijian/Tuijian'),
+    children:[
+      {
+        path:'gedanlist/:id/:type',
+        component:()=>import('@/views/Tuijian/GeDanList')
+      },
+      {
+        path:'zhuanjilist/:id/:type',
+        component:()=>import('@/views/Tuijian/GeDanList')
+      }
+    ]
+  },
+  {
+    path:'/geshou',
+    component:()=>import('@/views/Geshou/Geshou')
+  },
+  {
+    path:'/paihang',
+    component:()=>import('@/views/Paihang/Paihang')
+  },
+  {
+    path:'/sousuo',
+    component:()=>import('@/views/Sousuo/Sousuo')
   },
 ]
 
