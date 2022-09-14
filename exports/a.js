@@ -13,6 +13,7 @@
 
 // export function A() {
 //     console.log("我是A");
+//     console.log("我是A");
 // };
 
 let A = function () {
